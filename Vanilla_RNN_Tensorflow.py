@@ -2,18 +2,19 @@ import tensorflow as tf
 import numpy as np
 
 inputs = np.array([
-    [[1, 2]]
+    [[1, 2], [2, 4]]
+    # ,[[5, 6], [7, 8]]
 ])
 
 tf.reset_default_graph()
 tf.set_random_seed(777)
 tf_inputs = tf.constant(inputs, dtype=tf.float32)
-rnn_cell = tf.nn.rnn_cell.BasicRNNCell(num_units=5)
+rnn_cell = tf.nn.rnn_cell.BasicRNNCell(num_units=3)
 outputs, state = tf.nn.dynamic_rnn(cell=rnn_cell, dtype=tf.float32, inputs=tf_inputs)
 variables_names =[v.name for v in tf.trainable_variables()]
 
-print(outputs)
-print(state)
+print("output=", outputs)
+print("state=", state)
 print("weights")
 for v in tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES):
     print(v)
@@ -27,7 +28,7 @@ with tf.Session() as sess:
     print(state_run)
     print("weights")
     values = sess.run(variables_names)
-    for k,v in zip(variables_names, values):
+    for k, v in zip(variables_names, values):
         print(k, v)
 
 
