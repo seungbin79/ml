@@ -1,0 +1,13 @@
+sphinx
+sphinx_rtd_theme
+sphinx-gallery
+sphinx-sitemap
+numpy
+matplotlib
+torchvision
+torch
+
+# to run examples
+pandas
+scikit-image
+pillow
